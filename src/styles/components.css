@@ -214,9 +214,9 @@
 .project-media--video { aspect-ratio:auto; }
 .project-media--video video { aspect-ratio:16 / 10; }
 .project-media--video figcaption { padding: .9rem; color: var(--color-text-soft); font-size: .85rem; }
-.project-media--placeholder { display: flex; align-items: flex-end; justify-content: space-between; padding: 1.5rem; background: linear-gradient(145deg, #20262e, #14171b 70%); }
-.project-media--variant-2 { background: linear-gradient(145deg, #242522, #15181b 70%); }
-.project-media--variant-3 { background: linear-gradient(145deg, #1b2529, #14181b 70%); }
+.project-media--placeholder { display: flex; align-items: flex-end; justify-content: space-between; padding: 1.5rem; background:radial-gradient(22rem 14rem at 85% 12%,rgba(189,149,103,.28),transparent 62%),linear-gradient(145deg,#2a241f,#14171b 72%); }
+.project-media--variant-2 { background:radial-gradient(20rem 15rem at 15% 5%,rgba(189,149,103,.24),transparent 62%),linear-gradient(145deg,#29251d,#15181b 72%); }
+.project-media--variant-3 { background:radial-gradient(22rem 15rem at 90% 18%,rgba(205,133,73,.24),transparent 62%),linear-gradient(145deg,#29211c,#14181b 72%); }
 .media-placeholder__monogram { align-self: flex-start; display: grid; width: 2.6rem; height: 2.6rem; place-items:center; border: 1px solid rgba(241,243,245,.3); color: var(--color-accent); font: 600 .7rem var(--font-mono); }
 .media-placeholder__content { text-align: right; }
 .media-placeholder__content p { margin: 0 0 .4rem; font-size: clamp(1.3rem,3vw,2.2rem); font-weight: 540; letter-spacing: -.035em; }
