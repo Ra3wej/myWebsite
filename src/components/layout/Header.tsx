@@ -60,9 +60,8 @@ export function Header() {
           aria-label="Primary navigation"
           data-open={isOpen}
         >
-          {navigation.map((item, index) => (
+          {navigation.map((item) => (
             <a key={item.href} href={item.href} onClick={closeMenu}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
               {item.label}
             </a>
           ))}

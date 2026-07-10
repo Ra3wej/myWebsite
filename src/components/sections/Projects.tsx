@@ -8,9 +8,8 @@ export function Projects() {
   return (
     <Section
       id="work"
-      index="04"
       eyebrow="Selected work"
-      title="Published on both sides of the store."
+      title="Published mobile applications."
       className="projects-section"
     >
       <div className="project-list">
@@ -29,7 +28,7 @@ export function Projects() {
                 </p>
                 <h3>{project.name}</h3>
               </div>
-              <p className="project-role">Role — {project.role}</p>
+              <p className="project-role">{project.role}</p>
               <p className="project-summary">{project.summary}</p>
               <ul className="tag-list" aria-label={`${project.name} technologies`}>
                 {project.technologies.map((technology) => (

@@ -6,9 +6,8 @@ export function Education() {
   return (
     <Section
       id="education"
-      index="05"
       eyebrow="Education"
-      title="Where the foundation started."
+      title="Education."
       className="education-section"
     >
       <Reveal className="education-card">

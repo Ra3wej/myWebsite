@@ -6,9 +6,8 @@ export function About() {
   return (
     <Section
       id="about"
-      index="01"
-      eyebrow="Profile"
-      title="Backend depth. Product perspective."
+      eyebrow="About"
+      title="From mobile products to backend systems."
       className="about-section"
     >
       <Reveal className="about-copy">

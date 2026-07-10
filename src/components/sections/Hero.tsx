@@ -1,27 +1,16 @@
 import { profile } from '../../data/portfolio';
 import { ArrowIcon } from '../ui/ArrowIcon';
-import { Reveal } from '../ui/Reveal';
 
 export function Hero() {
   return (
     <section id="top" className="hero" aria-labelledby="hero-title">
-      <div className="hero-system" aria-hidden="true">
-        <span className="hero-node hero-node--one" />
-        <span className="hero-node hero-node--two" />
-        <span className="hero-node hero-node--three" />
-        <span className="hero-path" />
-      </div>
-      <Reveal className="hero-content">
-        <p className="hero-overline">
-          <span className="status-dot" />
-          {profile.location}
-        </p>
+      <div className="hero-content">
+        <p className="hero-overline">{profile.title}</p>
         <h1 id="hero-title">
-          <span>{profile.name}</span>
-          <span>{profile.title}</span>
+          {profile.name}
         </h1>
-        <div className="hero-summary">
-          <p>{profile.statement}</p>
+        <div className="hero-intro">
+          <p className="hero-statement">{profile.statement}</p>
           <p>{profile.introduction}</p>
         </div>
         <div className="hero-actions">
@@ -34,10 +23,15 @@ export function Hero() {
             <ArrowIcon direction="down" />
           </a>
         </div>
-      </Reveal>
-      <p className="hero-index" aria-hidden="true">
-        00 / Portfolio — 2026
-      </p>
+      </div>
+      <aside className="hero-aside" aria-label="Current professional focus">
+        <p className="hero-aside__label">Currently</p>
+        <p className="hero-aside__role">Backend Developer</p>
+        <p className="hero-aside__company">Moonline Travel · Feb 2026 — Present</p>
+        <div className="hero-aside__rule" />
+        <p className="hero-aside__label">Focus</p>
+        <p className="hero-aside__stack">C# / .NET / PostgreSQL / Docker / CQRS</p>
+      </aside>
     </section>
   );
 }

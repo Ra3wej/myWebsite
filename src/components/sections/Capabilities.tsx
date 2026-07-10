@@ -6,9 +6,8 @@ export function Capabilities() {
   return (
     <Section
       id="skills"
-      index="03"
       eyebrow="Capabilities"
-      title="A stack shaped by real products."
+      title="Core technical capabilities."
       className="capabilities-section"
     >
       <div className="capability-grid">

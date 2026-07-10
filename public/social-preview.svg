@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Rawezh Ali Rashid portfolio</title>
+  <desc id="desc">Dark editorial card identifying Rawezh as a backend and mobile developer.</desc>
+  <defs>
+    <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M72 0H0v72" fill="none" stroke="#f2f1e8" stroke-opacity=".06"/>
+    </pattern>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1010 80) rotate(132) scale(560)">
+      <stop stop-color="#c7ff42" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#c7ff42" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0c0b"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M72 74h1056M72 556h1056" stroke="#f2f1e8" stroke-opacity=".18"/>
+  <circle cx="1042" cy="188" r="122" fill="none" stroke="#c7ff42" stroke-opacity=".45"/>
+  <circle cx="1042" cy="188" r="72" fill="none" stroke="#f2f1e8" stroke-opacity=".18"/>
+  <circle cx="1042" cy="188" r="9" fill="#c7ff42"/>
+  <text x="72" y="124" fill="#c7ff42" font-family="monospace" font-size="20" letter-spacing="3">PORTFOLIO / 2026</text>
+  <text x="72" y="292" fill="#f2f1e8" font-family="Arial, sans-serif" font-size="86" font-weight="700" letter-spacing="-4">Rawezh Ali Rashid</text>
+  <text x="72" y="382" fill="#b4b8b0" font-family="Arial, sans-serif" font-size="55" font-weight="500" letter-spacing="-2">Backend &amp; Mobile Developer</text>
+  <text x="72" y="510" fill="#b4b8b0" font-family="monospace" font-size="21" letter-spacing="1">SULAYMANIYAH, IRAQ  ·  C# / .NET  ·  FLUTTER</text>
+</svg>

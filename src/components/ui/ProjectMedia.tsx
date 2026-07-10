@@ -23,18 +23,11 @@ export function ProjectMedia({
           aria-label={`${projectName}: ${media.label}`}
           role="img"
         >
-          <div className="media-grid" aria-hidden="true" />
-          <div className="media-orbit media-orbit--one" aria-hidden="true" />
-          <div className="media-orbit media-orbit--two" aria-hidden="true" />
-          <div className="media-device" aria-hidden="true">
-            <span />
-            <span />
-            <span />
+          <div className="media-placeholder__monogram" aria-hidden="true">RA</div>
+          <div className="media-placeholder__content">
+            <p>{projectName}</p>
+            <span>{media.label}</span>
           </div>
-          <p className="media-placeholder-label">
-            <span>Media slot</span>
-            {media.label}
-          </p>
         </div>
       );
     case 'image':

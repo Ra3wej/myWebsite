@@ -7,9 +7,8 @@ export function Contact() {
   return (
     <Section
       id="contact"
-      index="06"
       eyebrow="Contact"
-      title="Let’s build something dependable."
+      title="Let’s talk."
       className="contact-section"
     >
       <Reveal className="contact-panel">

@@ -3,7 +3,6 @@ import { Reveal } from '../ui/Reveal';
 
 interface SectionProps {
   readonly id: string;
-  readonly index: string;
   readonly eyebrow: string;
   readonly title: string;
   readonly children: ReactNode;
@@ -12,7 +11,6 @@ interface SectionProps {
 
 export function Section({
   id,
-  index,
   eyebrow,
   title,
   children,
@@ -21,10 +19,7 @@ export function Section({
   return (
     <section id={id} className={`section ${className}`.trim()}>
       <Reveal className="section-heading">
-        <div className="section-kicker">
-          <span>{index}</span>
-          <span>{eyebrow}</span>
-        </div>
+        <p className="section-kicker">{eyebrow}</p>
         <h2>{title}</h2>
       </Reveal>
       {children}

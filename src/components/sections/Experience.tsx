@@ -6,9 +6,8 @@ export function Experience() {
   return (
     <Section
       id="experience"
-      index="02"
       eyebrow="Experience"
-      title="Production work, evolving systems."
+      title="Professional experience."
       className="experience-section"
     >
       <div className="timeline">
