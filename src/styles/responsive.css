@@ -19,8 +19,8 @@
   .timeline-entry { grid-template-columns:minmax(10rem,.35fr) minmax(0,1fr); }
   .project-card { grid-template-columns:minmax(0,1fr); }
   .project-card:nth-child(even) .project-media,.project-card:nth-child(even) .project-content { order:initial; }
-  .education-card { grid-template-columns:.3fr 1fr; }
-  .education-card > p:last-child { grid-column:2; }
+  .education-card { grid-template-columns:.28fr 1fr; }
+  .education-card__degree { grid-column:2; padding-left:0; border-left:0; }
 }
 
 @media (max-width: 40rem) {
@@ -42,8 +42,8 @@
   .project-media--placeholder { min-height:0; }
   .media-placeholder__content p { font-size:1.4rem; }
   .external-link { width:100%; }
-  .education-card { grid-template-columns:1fr; gap:1rem; }
-  .education-card > p:last-child { grid-column:auto; }
+  .education-card { grid-template-columns:1fr; gap:1.45rem; }
+  .education-card__degree { grid-column:auto; padding-top:1.25rem; border-top:1px solid var(--color-line); }
   .contact-panel { padding:1.5rem; }
   .contact-email { overflow-wrap:anywhere; font-size:clamp(1.25rem,6vw,2.1rem); }
   .contact-meta,.site-footer { display:grid; gap:.55rem; }
