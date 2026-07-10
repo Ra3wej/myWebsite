@@ -1,1 +1,166 @@
-/* Global document styles are implemented in Task 5. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-bg);
+  scroll-padding-top: 6rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  min-width: 20rem;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    linear-gradient(90deg, transparent 0 49.9%, rgba(255, 255, 255, 0.025) 50%, transparent 50.1%),
+    var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.95rem + 0.18vw, 1.125rem);
+  font-weight: 450;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 6rem 6rem;
+  content: '';
+  opacity: 0.14;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black, transparent 74%);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 550;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  border-radius: 0.15rem;
+  outline: 0.18rem solid var(--color-accent);
+  outline-offset: 0.3rem;
+}
+
+main:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 200;
+  padding: 0.75rem 1rem;
+  transform: translateY(-150%);
+  border: 1px solid var(--color-accent);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.mono-label,
+.hero-overline,
+.hero-index,
+.section-kicker,
+.timeline-meta,
+.project-heading p,
+.project-role,
+.capability-card__header > span,
+.contact-meta,
+.site-footer,
+.tag-list,
+.confidential-badge,
+.media-placeholder-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal[data-enhanced='true'][data-visible='false'] {
+  opacity: 0;
+  transform: translateY(1.75rem);
+}
+
+.reveal[data-enhanced='true'] {
+  transition:
+    opacity var(--transition-slow),
+    transform var(--transition-slow);
+}
