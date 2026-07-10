@@ -1,0 +1,755 @@
+/* Cinematic section enhancements. Base component styles remain the static fallback. */
+
+.about-section,
+.experience-section,
+.capabilities-section,
+.projects-section,
+.education-section,
+.contact-section {
+  position: relative;
+}
+
+.about-copy--cinematic {
+  position: relative;
+}
+
+.about-copy--cinematic::before {
+  position: absolute;
+  top: -1.25rem;
+  left: 0;
+  width: clamp(2.5rem, 7vw, 6rem);
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+  content: '';
+}
+
+.proof-card--cinematic {
+  position: relative;
+  overflow: hidden;
+  perspective: 62rem;
+}
+
+.proof-card__surface {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  transform-style: preserve-3d;
+}
+
+.proof-card__surface::before {
+  position: absolute;
+  inset: -1.35rem;
+  z-index: -1;
+  background: radial-gradient(
+    18rem circle at 82% 12%,
+    rgba(189, 149, 103, 0.2),
+    transparent 62%
+  );
+  content: '';
+  opacity: 0;
+  transition: opacity 320ms var(--ease);
+}
+
+.proof-card__surface strong,
+.proof-card__surface > span:last-child {
+  transform: translateZ(1.25rem);
+}
+
+.proof-card__surface strong > span {
+  max-width: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.proof-card .proof-card__index {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: var(--color-accent);
+  font: 500 0.62rem var(--font-mono);
+  letter-spacing: 0.09em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .proof-card--cinematic:hover .proof-card__surface::before {
+    opacity: 1;
+  }
+}
+
+.timeline--cinematic {
+  --timeline-gap: clamp(1rem, 2.4vw, 2rem);
+  --timeline-meta-width: clamp(12rem, 24vw, 20rem);
+  position: relative;
+  isolation: isolate;
+}
+
+.timeline__progress {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--timeline-meta-width) + var(--timeline-gap) + 1.5rem);
+  z-index: 2;
+  width: 1px;
+  overflow: hidden;
+  background: var(--color-line);
+  pointer-events: none;
+}
+
+.timeline__progress-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: top;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--color-accent) 12%,
+    var(--color-accent) 84%,
+    transparent
+  );
+  box-shadow: 0 0 1.4rem rgba(189, 149, 103, 0.5);
+}
+
+.timeline-entry--cinematic {
+  position: relative;
+  z-index: 3;
+  grid-template-columns: var(--timeline-meta-width) 3rem minmax(0, 1fr);
+  gap: var(--timeline-gap);
+}
+
+.timeline-entry--cinematic .timeline-meta {
+  grid-column: 1;
+}
+
+.timeline-entry--cinematic .timeline-marker {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  grid-column: 2;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.timeline-entry--cinematic .timeline-marker > span {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  border: 1px solid rgba(189, 149, 103, 0.58);
+  border-radius: 50%;
+  background: var(--color-bg);
+  box-shadow: 0 0 0 0.45rem var(--color-bg), 0 0 1.6rem rgba(189, 149, 103, 0.15);
+  color: var(--color-accent);
+  font: 500 0.62rem var(--font-mono);
+}
+
+.timeline-entry--cinematic .timeline-marker > i {
+  position: absolute;
+  top: 1.08rem;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0.9rem rgba(189, 149, 103, 0.85);
+}
+
+.timeline-entry--cinematic .timeline-content {
+  grid-column: 3;
+}
+
+@supports (animation-timeline: view()) {
+  .timeline__progress-bar {
+    animation: timeline-progress linear both;
+    animation-range: entry 5% cover 92%;
+    animation-timeline: view();
+  }
+}
+
+@keyframes timeline-progress {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.capability-card--cinematic {
+  position: relative;
+  overflow: hidden;
+  perspective: 70rem;
+}
+
+.capability-card__surface {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  transform-style: preserve-3d;
+}
+
+.capability-card__spotlight {
+  position: absolute;
+  inset: -3rem;
+  z-index: -1;
+  background:
+    radial-gradient(
+      24rem circle at var(--tilt-pointer-x, 78%) var(--tilt-pointer-y, 4%),
+      rgba(189, 149, 103, 0.2),
+      transparent 60%
+    ),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 48%);
+  opacity: 0.28;
+  pointer-events: none;
+  transition: opacity 320ms var(--ease);
+}
+
+.capability-card__surface .capability-card__header,
+.capability-card__surface > p,
+.capability-card__surface > .tag-list {
+  transform: translateZ(1.1rem);
+}
+
+.capability-card__surface > p {
+  max-width: 28rem;
+  min-height: 4.5rem;
+  color: var(--color-text-soft);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .capability-card--cinematic:hover .capability-card__spotlight {
+    opacity: 1;
+  }
+
+  .capability-card--cinematic:hover .tag-list li {
+    border-color: rgba(189, 149, 103, 0.38);
+    color: var(--color-text);
+  }
+}
+
+.projects-section {
+  --mission-sticky-top: 5.8rem;
+}
+
+.projects-section .project-list {
+  gap: clamp(4.5rem, 10vh, 8rem);
+  padding-bottom: clamp(2rem, 8vh, 6rem);
+  perspective: 100rem;
+}
+
+.project-card--mission {
+  --mission-offset: 0rem;
+  --mission-z: 1;
+  position: sticky;
+  top: calc(var(--mission-sticky-top) + var(--mission-offset));
+  z-index: var(--mission-z);
+  isolation: isolate;
+  min-height: clamp(29rem, 68svh, 40rem);
+  overflow: hidden;
+  transform-origin: center top;
+  border-color: rgba(241, 243, 245, 0.16);
+  box-shadow:
+    0 1.25rem 4.5rem rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(189, 149, 103, 0.035) inset;
+}
+
+.project-card--mission:focus-within { z-index: 30; }
+
+.project-card--mission-1 { --mission-offset: 0rem; --mission-z: 1; }
+.project-card--mission-2 { --mission-offset: 0.52rem; --mission-z: 2; }
+.project-card--mission-3 { --mission-offset: 1.04rem; --mission-z: 3; }
+.project-card--mission-4 { --mission-offset: 1.56rem; --mission-z: 4; }
+.project-card--mission-5 { --mission-offset: 2.08rem; --mission-z: 5; }
+.project-card--mission-6 { --mission-offset: 2.6rem; --mission-z: 6; }
+
+.project-card--mission::before {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 4;
+  height: 1px;
+  transform: scaleX(0.35);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--color-accent), transparent 72%);
+  content: '';
+  opacity: 0.7;
+}
+
+.project-card__atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(38rem 25rem at 12% 110%, rgba(189, 149, 103, 0.11), transparent 70%),
+    linear-gradient(115deg, transparent 45%, rgba(255, 255, 255, 0.022));
+  pointer-events: none;
+}
+
+.project-card__mission-index {
+  position: absolute;
+  right: clamp(0.8rem, 2vw, 1.6rem);
+  bottom: -0.2em;
+  z-index: -1;
+  color: rgba(241, 243, 245, 0.025);
+  font: 600 clamp(7rem, 17vw, 15rem) / 0.8 var(--font-mono);
+  letter-spacing: -0.1em;
+  pointer-events: none;
+}
+
+.project-card--mission > .project-media,
+.project-content--mission {
+  position: relative;
+  z-index: 2;
+}
+
+.project-card--mission .project-media {
+  box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.3);
+}
+
+.project-card--mission .project-media--placeholder {
+  display: block;
+  padding: 0;
+}
+
+.project-media__tilt {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 1.5rem;
+  transform-style: preserve-3d;
+}
+
+.project-media__tilt::after {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border: 1px solid rgba(241, 243, 245, 0.09);
+  background:
+    radial-gradient(
+      circle at var(--tilt-pointer-x) var(--tilt-pointer-y),
+      rgba(241, 243, 245, 0.12),
+      transparent 38%
+    ),
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.06),
+      transparent 25% 72%,
+      rgba(189, 149, 103, 0.04)
+    );
+  content: '';
+  pointer-events: none;
+}
+
+.project-media__tilt .media-placeholder__monogram,
+.project-media__tilt .media-placeholder__content {
+  position: relative;
+  z-index: 5;
+  transform: translateZ(2rem);
+}
+
+.project-hologram {
+  --holo-accent: rgba(189, 149, 103, 0.78);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.project-hologram__grid {
+  position: absolute;
+  right: -20%;
+  bottom: -38%;
+  left: -20%;
+  height: 78%;
+  transform: perspective(28rem) rotateX(66deg) translateZ(-1rem);
+  transform-origin: center bottom;
+  background-image:
+    linear-gradient(rgba(189, 149, 103, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(189, 149, 103, 0.15) 1px, transparent 1px);
+  background-size: 2.25rem 2.25rem;
+  mask-image: linear-gradient(to top, #000, transparent 92%);
+}
+
+.project-hologram__halo {
+  position: absolute;
+  top: 48%;
+  left: 51%;
+  border: 1px solid rgba(189, 149, 103, 0.28);
+  border-radius: 50%;
+  box-shadow: 0 0 3rem rgba(189, 149, 103, 0.08);
+}
+
+.project-hologram__halo--outer {
+  width: min(74%, 25rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) rotateX(66deg);
+}
+
+.project-hologram__halo--inner {
+  width: min(48%, 15rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) rotateX(66deg);
+  border-color: rgba(241, 243, 245, 0.16);
+}
+
+.project-hologram__orbit {
+  position: absolute;
+  top: 15%;
+  left: 27%;
+  width: 48%;
+  aspect-ratio: 1;
+  border: 1px dashed rgba(189, 149, 103, 0.35);
+  border-radius: 50%;
+  animation: hologram-orbit 18s linear infinite;
+}
+
+.project-hologram__orbit > i {
+  position: absolute;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--holo-accent);
+  box-shadow: 0 0 1.2rem rgba(189, 149, 103, 0.8);
+}
+
+.project-hologram__orbit > i:nth-child(1) { top: 8%; left: 20%; }
+.project-hologram__orbit > i:nth-child(2) { top: 48%; right: -0.2rem; }
+.project-hologram__orbit > i:nth-child(3) { bottom: 4%; left: 28%; }
+
+.project-hologram__panel,
+.project-hologram__core {
+  position: absolute;
+  top: 18%;
+  left: 36%;
+  width: 31%;
+  height: 58%;
+  border: 1px solid rgba(189, 149, 103, 0.45);
+  background: linear-gradient(160deg, rgba(189, 149, 103, 0.1), rgba(16, 18, 21, 0.38));
+}
+
+.project-hologram__panel--rear {
+  transform: translate3d(-2.8rem, 0.6rem, -2rem) rotateY(19deg);
+  opacity: 0.3;
+}
+
+.project-hologram__panel--mid {
+  transform: translate3d(2.8rem, -0.4rem, -1rem) rotateY(-17deg);
+  opacity: 0.48;
+}
+
+.project-hologram__core {
+  overflow: hidden;
+  transform: translateZ(1.5rem) rotateY(-5deg);
+  box-shadow: 0 0 2.6rem rgba(189, 149, 103, 0.12), inset 0 0 2rem rgba(189, 149, 103, 0.07);
+  animation: hologram-float 6.5s var(--ease) infinite;
+}
+
+.project-hologram__core::before,
+.project-hologram__core::after {
+  position: absolute;
+  inset: 9% 12% auto;
+  height: 1px;
+  background: rgba(241, 243, 245, 0.18);
+  content: '';
+}
+
+.project-hologram__core::after {
+  top: auto;
+  bottom: 11%;
+  width: 43%;
+  background: var(--holo-accent);
+}
+
+.project-hologram__scan {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 22%;
+  transform: translateY(-110%);
+  background: linear-gradient(180deg, transparent, rgba(189, 149, 103, 0.16), transparent);
+  animation: hologram-scan 4.8s ease-in-out infinite;
+}
+
+.project-hologram__route {
+  position: absolute;
+  border-color: rgba(189, 149, 103, 0.4);
+  border-style: solid;
+}
+
+.project-hologram__route--one {
+  top: 28%;
+  left: 16%;
+  width: 58%;
+  height: 24%;
+  border-width: 1px 1px 0 0;
+}
+
+.project-hologram__route--two {
+  right: 15%;
+  bottom: 22%;
+  width: 44%;
+  height: 22%;
+  border-width: 0 0 1px 1px;
+}
+
+.project-hologram__node {
+  position: absolute;
+  width: 0.42rem;
+  height: 0.42rem;
+  border: 1px solid var(--holo-accent);
+  border-radius: 50%;
+  background: var(--color-bg);
+  box-shadow: 0 0 0.8rem rgba(189, 149, 103, 0.65);
+}
+
+.project-hologram__node--one { top: 26%; left: 14%; }
+.project-hologram__node--two { top: 49%; right: 23%; }
+.project-hologram__node--three { right: 13%; bottom: 20%; }
+
+.project-hologram__readout {
+  position: absolute;
+  top: 1.1rem;
+  left: 1.1rem;
+  color: rgba(241, 243, 245, 0.45);
+  font: 500 0.58rem var(--font-mono);
+  letter-spacing: 0.12em;
+}
+
+.project-hologram--variant-2 .project-hologram__core {
+  transform: translate3d(-0.9rem, 0, 1.5rem) rotateY(7deg);
+}
+
+.project-hologram--variant-2 .project-hologram__orbit {
+  animation-direction: reverse;
+}
+
+.project-hologram--variant-3 .project-hologram__core {
+  transform: translate3d(1rem, 0.35rem, 1.5rem) rotateY(-9deg);
+}
+
+.project-hologram--variant-3 .project-hologram__halo--outer {
+  transform: translate(-50%, -50%) rotateX(72deg) rotateZ(12deg);
+}
+
+@keyframes hologram-orbit {
+  to { transform: rotate(1turn); }
+}
+
+@keyframes hologram-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -0.6rem; }
+}
+
+@keyframes hologram-scan {
+  0%, 14% { transform: translateY(-110%); opacity: 0; }
+  30% { opacity: 1; }
+  72% { opacity: 0.7; }
+  86%, 100% { transform: translateY(460%); opacity: 0; }
+}
+
+.education-card--cinematic {
+  isolation: isolate;
+}
+
+.education-card__beam {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--color-accent), transparent 68%);
+  animation: education-beam 5s var(--ease) infinite alternate;
+}
+
+.education-card__orbit {
+  position: absolute;
+  right: -4.5rem;
+  bottom: -6.5rem;
+  width: 15rem;
+  height: 15rem;
+  border: 1px dashed rgba(189, 149, 103, 0.19);
+  border-radius: 50%;
+  animation: hologram-orbit 32s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes education-beam {
+  from { transform: scaleX(0.24); opacity: 0.45; }
+  to { transform: scaleX(0.82); opacity: 0.95; }
+}
+
+.contact-panel--cinematic {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(36rem 24rem at 92% 0, rgba(189, 149, 103, 0.12), transparent 70%),
+    var(--color-bg-elevated);
+}
+
+.contact-panel__halo {
+  position: absolute;
+  top: 50%;
+  right: -10rem;
+  z-index: -1;
+  width: 25rem;
+  height: 25rem;
+  transform: translateY(-50%);
+  border: 1px solid rgba(189, 149, 103, 0.13);
+  border-radius: 50%;
+  box-shadow: 0 0 6rem rgba(189, 149, 103, 0.08);
+  pointer-events: none;
+}
+
+.contact-panel__intro > p {
+  max-width: 38rem;
+  margin-bottom: 0;
+  color: var(--color-text-soft);
+  font-size: 1.15rem;
+}
+
+.contact-email--cinematic {
+  position: relative;
+  border-bottom-color: transparent;
+}
+
+.contact-email--cinematic::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  transform: scaleX(0.24);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-line-strong));
+  content: '';
+  transition: transform 420ms var(--ease);
+}
+
+.contact-email--cinematic .arrow-icon {
+  transition: transform 320ms var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-email--cinematic:hover::after {
+    transform: scaleX(1);
+  }
+
+  .contact-email--cinematic:hover .arrow-icon {
+    transform: translate(0.22rem, -0.22rem);
+  }
+}
+
+@media (max-width: 58rem) {
+  .proof-card__surface,
+  .capability-card__surface,
+  .project-media__tilt {
+    transform: none !important;
+  }
+
+  .timeline__progress,
+  .timeline-entry--cinematic .timeline-marker {
+    display: none;
+  }
+
+  .timeline-entry--cinematic {
+    grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 1fr);
+  }
+
+  .timeline-entry--cinematic .timeline-meta {
+    grid-column: 1;
+  }
+
+  .timeline-entry--cinematic .timeline-content {
+    grid-column: 2;
+  }
+
+  .projects-section .project-list {
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    padding-bottom: 0;
+    perspective: none;
+  }
+
+  .project-card--mission {
+    position: relative;
+    top: auto;
+    z-index: auto;
+    min-height: 0;
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.2);
+  }
+
+  .project-card__mission-index {
+    font-size: clamp(5rem, 22vw, 9rem);
+  }
+
+  .project-hologram__panel--rear,
+  .project-hologram__halo--outer {
+    display: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .project-hologram__orbit,
+  .project-hologram__core,
+  .project-hologram__scan,
+  .education-card__beam,
+  .education-card__orbit {
+    animation: none;
+  }
+}
+
+@media (max-width: 40rem) {
+  .timeline-entry--cinematic {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-entry--cinematic .timeline-meta,
+  .timeline-entry--cinematic .timeline-content {
+    grid-column: 1;
+  }
+
+  .project-hologram__core {
+    left: 33%;
+    width: 38%;
+  }
+
+  .contact-panel__halo {
+    right: -16rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card--mission {
+    position: relative;
+    top: auto;
+    z-index: auto;
+  }
+
+  .projects-section .project-list {
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    padding-bottom: 0;
+    perspective: none;
+  }
+
+  .proof-card__surface,
+  .capability-card__surface,
+  .project-media__tilt {
+    transform: none !important;
+  }
+
+  .timeline__progress-bar {
+    transform: scaleY(1) !important;
+  }
+
+  .project-hologram__orbit,
+  .project-hologram__core,
+  .project-hologram__scan,
+  .education-card__beam,
+  .education-card__orbit {
+    animation: none !important;
+  }
+
+  .contact-email--cinematic:hover .arrow-icon { transform: none; }
+}

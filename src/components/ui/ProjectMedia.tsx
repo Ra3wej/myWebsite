@@ -1,4 +1,6 @@
 import type { MediaAsset } from '../../types/portfolio';
+import { ProjectHologram } from '../visuals/ProjectHologram';
+import { TiltSurface } from './TiltSurface';
 
 interface ProjectMediaProps {
   readonly media: MediaAsset;
@@ -23,11 +25,14 @@ export function ProjectMedia({
           aria-label={`${projectName}: ${media.label}`}
           role="img"
         >
-          <div className="media-placeholder__monogram" aria-hidden="true">RA</div>
-          <div className="media-placeholder__content">
-            <p>{projectName}</p>
-            <span>{media.label}</span>
-          </div>
+          <TiltSurface className="project-media__tilt">
+            <ProjectHologram sequence={sequence} />
+            <div className="media-placeholder__monogram" aria-hidden="true">RA</div>
+            <div className="media-placeholder__content">
+              <p>{projectName}</p>
+              <span>{media.label}</span>
+            </div>
+          </TiltSurface>
         </div>
       );
     case 'image':

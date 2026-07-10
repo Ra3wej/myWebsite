@@ -14,13 +14,23 @@ export function Projects() {
     >
       <div className="project-list">
         {projects.map((project, index) => (
-          <Reveal className="project-card" key={project.name}>
+          <Reveal
+            className={`project-card project-card--mission project-card--mission-${index + 1}`}
+            key={project.name}
+            delay={index * 0.035}
+            axis="y"
+            amount={0.16}
+          >
+            <span className="project-card__atmosphere" aria-hidden="true" />
+            <span className="project-card__mission-index" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
             <ProjectMedia
               media={project.media}
               projectName={project.name}
               sequence={index}
             />
-            <article className="project-content">
+            <article className="project-content project-content--mission">
               <div className="project-heading">
                 <p>
                   <span>{String(index + 1).padStart(2, '0')}</span>
