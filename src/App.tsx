@@ -1,5 +1,6 @@
 import { Footer } from './components/layout/Footer';
 import { Header } from './components/layout/Header';
+import { ExperienceRoot } from './components/experience/ExperienceRoot';
 import { About } from './components/sections/About';
 import { Capabilities } from './components/sections/Capabilities';
 import { Contact } from './components/sections/Contact';
@@ -10,7 +11,7 @@ import { Projects } from './components/sections/Projects';
 
 function App() {
   return (
-    <>
+    <ExperienceRoot>
       <Header />
       <main id="main-content" tabIndex={-1}>
         <Hero />
@@ -22,7 +23,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </ExperienceRoot>
   );
 }
 

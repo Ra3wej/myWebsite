@@ -4,7 +4,10 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <p>Designed & built by {profile.name}</p>
-      <p>© {new Date().getFullYear()} — Sulaymaniyah, Iraq</p>
+      <div className="footer-system">
+        <span><i aria-hidden="true" /> System stable</span>
+        <p>© {new Date().getFullYear()} — Sulaymaniyah, Iraq</p>
+      </div>
     </footer>
   );
 }

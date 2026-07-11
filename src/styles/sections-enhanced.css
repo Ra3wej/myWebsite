@@ -1,0 +1,845 @@
+/* Cinematic section enhancements. Base component styles remain the static fallback. */
+
+.about-section,
+.experience-section,
+.capabilities-section,
+.projects-section,
+.education-section,
+.contact-section {
+  position: relative;
+}
+
+.about-copy--cinematic {
+  position: relative;
+}
+
+.about-copy--cinematic::before {
+  position: absolute;
+  top: -1.25rem;
+  left: 0;
+  width: clamp(2.5rem, 7vw, 6rem);
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+  content: '';
+}
+
+.proof-card--cinematic {
+  position: relative;
+  overflow: hidden;
+  perspective: 62rem;
+}
+
+.proof-card__surface {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  transform-style: preserve-3d;
+}
+
+.proof-card__surface::before {
+  position: absolute;
+  inset: -1.35rem;
+  z-index: -1;
+  background: radial-gradient(
+    18rem circle at 82% 12%,
+    rgba(189, 149, 103, 0.2),
+    transparent 62%
+  );
+  content: '';
+  opacity: 0;
+  transition: opacity 320ms var(--ease);
+}
+
+.proof-card__surface strong,
+.proof-card__surface > span:last-child {
+  transform: translateZ(1.25rem);
+}
+
+.proof-card__surface strong > span {
+  max-width: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.proof-card .proof-card__index {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: var(--color-accent);
+  font: 500 0.62rem var(--font-mono);
+  letter-spacing: 0.09em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .proof-card--cinematic:hover .proof-card__surface::before {
+    opacity: 1;
+  }
+}
+
+.timeline--cinematic {
+  --timeline-gap: clamp(1rem, 2.4vw, 2rem);
+  --timeline-meta-width: clamp(12rem, 24vw, 20rem);
+  position: relative;
+  isolation: isolate;
+}
+
+.timeline__progress {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--timeline-meta-width) + var(--timeline-gap) + 1.5rem);
+  z-index: 2;
+  width: 1px;
+  overflow: hidden;
+  background: var(--color-line);
+  pointer-events: none;
+}
+
+.timeline__progress-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: top;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--color-accent) 12%,
+    var(--color-accent) 84%,
+    transparent
+  );
+  box-shadow: 0 0 1.4rem rgba(189, 149, 103, 0.5);
+}
+
+.timeline-entry--cinematic {
+  position: relative;
+  z-index: 3;
+  grid-template-columns: var(--timeline-meta-width) 3rem minmax(0, 1fr);
+  gap: var(--timeline-gap);
+}
+
+.timeline-entry--cinematic .timeline-meta {
+  grid-column: 1;
+}
+
+.timeline-entry--cinematic .timeline-marker {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  grid-column: 2;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.timeline-entry--cinematic .timeline-marker > span {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  border: 1px solid rgba(189, 149, 103, 0.58);
+  border-radius: 50%;
+  background: var(--color-bg);
+  box-shadow: 0 0 0 0.45rem var(--color-bg), 0 0 1.6rem rgba(189, 149, 103, 0.15);
+  color: var(--color-accent);
+  font: 500 0.62rem var(--font-mono);
+}
+
+.timeline-entry--cinematic .timeline-marker > i {
+  position: absolute;
+  top: 1.08rem;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0.9rem rgba(189, 149, 103, 0.85);
+}
+
+.timeline-entry--cinematic .timeline-content {
+  grid-column: 3;
+}
+
+@supports (animation-timeline: view()) {
+  .timeline__progress-bar {
+    animation: timeline-progress linear both;
+    animation-range: entry 5% cover 92%;
+    animation-timeline: view();
+  }
+}
+
+@keyframes timeline-progress {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.capability-card--cinematic {
+  position: relative;
+  overflow: hidden;
+  perspective: 70rem;
+}
+
+.capability-card__surface {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  transform-style: preserve-3d;
+}
+
+.capability-card__spotlight {
+  position: absolute;
+  inset: -3rem;
+  z-index: -1;
+  background:
+    radial-gradient(
+      24rem circle at var(--tilt-pointer-x, 78%) var(--tilt-pointer-y, 4%),
+      rgba(189, 149, 103, 0.2),
+      transparent 60%
+    ),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 48%);
+  opacity: 0.28;
+  pointer-events: none;
+  transition: opacity 320ms var(--ease);
+}
+
+.capability-card__surface .capability-card__header,
+.capability-card__surface > p,
+.capability-card__surface > .tag-list {
+  transform: translateZ(1.1rem);
+}
+
+.capability-card__surface > p {
+  max-width: 28rem;
+  min-height: 4.5rem;
+  color: var(--color-text-soft);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .capability-card--cinematic:hover .capability-card__spotlight {
+    opacity: 1;
+  }
+
+  .capability-card--cinematic:hover .tag-list li {
+    border-color: rgba(189, 149, 103, 0.38);
+    color: var(--color-text);
+  }
+}
+
+.project-card__atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(38rem 25rem at 12% 110%, rgba(189, 149, 103, 0.11), transparent 70%),
+    linear-gradient(115deg, transparent 45%, rgba(255, 255, 255, 0.022));
+  pointer-events: none;
+}
+
+.project-card__mission-index {
+  position: absolute;
+  right: clamp(0.8rem, 2vw, 1.6rem);
+  bottom: -0.2em;
+  z-index: -1;
+  color: rgba(241, 243, 245, 0.025);
+  font: 600 clamp(7rem, 17vw, 15rem) / 0.8 var(--font-mono);
+  letter-spacing: -0.1em;
+  pointer-events: none;
+}
+
+.project-card--orbit > .project-media,
+.project-content--mission {
+  position: relative;
+  z-index: 2;
+}
+
+.project-card--orbit .project-media {
+  box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.3);
+}
+
+.project-card--orbit .project-media--placeholder {
+  display: block;
+  padding: 0;
+}
+
+.project-media__tilt {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 1.5rem;
+  transform-style: preserve-3d;
+}
+
+.project-media__tilt::after {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border: 1px solid rgba(241, 243, 245, 0.09);
+  background:
+    radial-gradient(
+      circle at var(--tilt-pointer-x) var(--tilt-pointer-y),
+      rgba(241, 243, 245, 0.12),
+      transparent 38%
+    ),
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.06),
+      transparent 25% 72%,
+      rgba(189, 149, 103, 0.04)
+    );
+  content: '';
+  pointer-events: none;
+}
+
+.project-media__tilt .media-placeholder__monogram,
+.project-media__tilt .media-placeholder__content {
+  position: relative;
+  z-index: 5;
+  transform: translateZ(2rem);
+}
+
+.project-hologram {
+  --holo-accent: rgba(189, 149, 103, 0.78);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.project-hologram__grid {
+  position: absolute;
+  right: -20%;
+  bottom: -38%;
+  left: -20%;
+  height: 78%;
+  transform: perspective(28rem) rotateX(66deg) translateZ(-1rem);
+  transform-origin: center bottom;
+  background-image:
+    linear-gradient(rgba(189, 149, 103, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(189, 149, 103, 0.15) 1px, transparent 1px);
+  background-size: 2.25rem 2.25rem;
+  mask-image: linear-gradient(to top, #000, transparent 92%);
+}
+
+.project-hologram__halo {
+  position: absolute;
+  top: 48%;
+  left: 51%;
+  border: 1px solid rgba(189, 149, 103, 0.28);
+  border-radius: 50%;
+  box-shadow: 0 0 3rem rgba(189, 149, 103, 0.08);
+}
+
+.project-hologram__halo--outer {
+  width: min(74%, 25rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) rotateX(66deg);
+}
+
+.project-hologram__halo--inner {
+  width: min(48%, 15rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) rotateX(66deg);
+  border-color: rgba(241, 243, 245, 0.16);
+}
+
+.project-hologram__orbit {
+  position: absolute;
+  top: 15%;
+  left: 27%;
+  width: 48%;
+  aspect-ratio: 1;
+  border: 1px dashed rgba(189, 149, 103, 0.35);
+  border-radius: 50%;
+  animation: hologram-orbit 18s linear infinite;
+}
+
+.project-hologram__orbit > i {
+  position: absolute;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--holo-accent);
+  box-shadow: 0 0 1.2rem rgba(189, 149, 103, 0.8);
+}
+
+.project-hologram__orbit > i:nth-child(1) { top: 8%; left: 20%; }
+.project-hologram__orbit > i:nth-child(2) { top: 48%; right: -0.2rem; }
+.project-hologram__orbit > i:nth-child(3) { bottom: 4%; left: 28%; }
+
+.project-hologram__panel,
+.project-hologram__core {
+  position: absolute;
+  top: 18%;
+  left: 36%;
+  width: 31%;
+  height: 58%;
+  border: 1px solid rgba(189, 149, 103, 0.45);
+  background: linear-gradient(160deg, rgba(189, 149, 103, 0.1), rgba(16, 18, 21, 0.38));
+}
+
+.project-hologram__panel--rear {
+  transform: translate3d(-2.8rem, 0.6rem, -2rem) rotateY(19deg);
+  opacity: 0.3;
+}
+
+.project-hologram__panel--mid {
+  transform: translate3d(2.8rem, -0.4rem, -1rem) rotateY(-17deg);
+  opacity: 0.48;
+}
+
+.project-hologram__core {
+  overflow: hidden;
+  transform: translateZ(1.5rem) rotateY(-5deg);
+  box-shadow: 0 0 2.6rem rgba(189, 149, 103, 0.12), inset 0 0 2rem rgba(189, 149, 103, 0.07);
+  animation: hologram-float 6.5s var(--ease) infinite;
+}
+
+.project-hologram__core::before,
+.project-hologram__core::after {
+  position: absolute;
+  inset: 9% 12% auto;
+  height: 1px;
+  background: rgba(241, 243, 245, 0.18);
+  content: '';
+}
+
+.project-hologram__core::after {
+  top: auto;
+  bottom: 11%;
+  width: 43%;
+  background: var(--holo-accent);
+}
+
+.project-hologram__scan {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 22%;
+  transform: translateY(-110%);
+  background: linear-gradient(180deg, transparent, rgba(189, 149, 103, 0.16), transparent);
+  animation: hologram-scan 4.8s ease-in-out infinite;
+}
+
+.project-hologram__route {
+  position: absolute;
+  border-color: rgba(189, 149, 103, 0.4);
+  border-style: solid;
+}
+
+.project-hologram__route--one {
+  top: 28%;
+  left: 16%;
+  width: 58%;
+  height: 24%;
+  border-width: 1px 1px 0 0;
+}
+
+.project-hologram__route--two {
+  right: 15%;
+  bottom: 22%;
+  width: 44%;
+  height: 22%;
+  border-width: 0 0 1px 1px;
+}
+
+.project-hologram__node {
+  position: absolute;
+  width: 0.42rem;
+  height: 0.42rem;
+  border: 1px solid var(--holo-accent);
+  border-radius: 50%;
+  background: var(--color-bg);
+  box-shadow: 0 0 0.8rem rgba(189, 149, 103, 0.65);
+}
+
+.project-hologram__node--one { top: 26%; left: 14%; }
+.project-hologram__node--two { top: 49%; right: 23%; }
+.project-hologram__node--three { right: 13%; bottom: 20%; }
+
+.project-hologram__readout {
+  position: absolute;
+  top: 1.1rem;
+  left: 1.1rem;
+  color: rgba(241, 243, 245, 0.45);
+  font: 500 0.58rem var(--font-mono);
+  letter-spacing: 0.12em;
+}
+
+.project-hologram--variant-2 .project-hologram__core {
+  transform: translate3d(-0.9rem, 0, 1.5rem) rotateY(7deg);
+}
+
+.project-hologram--variant-2 .project-hologram__orbit {
+  animation-direction: reverse;
+}
+
+.project-hologram--variant-3 .project-hologram__core {
+  transform: translate3d(1rem, 0.35rem, 1.5rem) rotateY(-9deg);
+}
+
+.project-hologram--variant-3 .project-hologram__halo--outer {
+  transform: translate(-50%, -50%) rotateX(72deg) rotateZ(12deg);
+}
+
+@keyframes hologram-orbit {
+  to { transform: rotate(1turn); }
+}
+
+@keyframes hologram-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -0.6rem; }
+}
+
+@keyframes hologram-scan {
+  0%, 14% { transform: translateY(-110%); opacity: 0; }
+  30% { opacity: 1; }
+  72% { opacity: 0.7; }
+  86%, 100% { transform: translateY(460%); opacity: 0; }
+}
+
+.education-card--cinematic {
+  isolation: isolate;
+}
+
+.education-card__beam {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--color-accent), transparent 68%);
+  animation: education-beam 5s var(--ease) infinite alternate;
+}
+
+.education-card__orbit {
+  position: absolute;
+  right: -4.5rem;
+  bottom: -6.5rem;
+  width: 15rem;
+  height: 15rem;
+  border: 1px dashed rgba(189, 149, 103, 0.19);
+  border-radius: 50%;
+  animation: hologram-orbit 32s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes education-beam {
+  from { transform: scaleX(0.24); opacity: 0.45; }
+  to { transform: scaleX(0.82); opacity: 0.95; }
+}
+
+.contact-panel--cinematic {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(36rem 24rem at 92% 0, rgba(189, 149, 103, 0.12), transparent 70%),
+    var(--color-bg-elevated);
+}
+
+.contact-panel__halo {
+  position: absolute;
+  top: 50%;
+  right: -10rem;
+  z-index: -1;
+  width: 25rem;
+  height: 25rem;
+  transform: translateY(-50%);
+  border: 1px solid rgba(189, 149, 103, 0.13);
+  border-radius: 50%;
+  box-shadow: 0 0 6rem rgba(189, 149, 103, 0.08);
+  pointer-events: none;
+}
+
+.contact-panel__intro > p {
+  max-width: 38rem;
+  margin-bottom: 0;
+  color: var(--color-text-soft);
+  font-size: 1.15rem;
+}
+
+.contact-email--cinematic {
+  position: relative;
+  border-bottom-color: transparent;
+}
+
+.contact-email--cinematic::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  transform: scaleX(0.24);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-line-strong));
+  content: '';
+  transition: transform 420ms var(--ease);
+}
+
+.contact-email--cinematic .arrow-icon {
+  transition: transform 320ms var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-email--cinematic:hover::after {
+    transform: scaleX(1);
+  }
+
+  .contact-email--cinematic:hover .arrow-icon {
+    transform: translate(0.22rem, -0.22rem);
+  }
+}
+
+/* Orbital project navigator. This replaces the former overlapping sticky stack. */
+.project-orbit {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(1rem, 2vw, 1.6rem) 0 0;
+}
+
+.project-orbit__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.1rem;
+  padding-inline: clamp(.3rem, 1vw, 1rem);
+}
+
+.project-orbit__eyebrow {
+  margin-bottom: .45rem;
+  color: var(--color-signal);
+  font: 500 .58rem var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.project-orbit__status {
+  display: flex;
+  align-items: baseline;
+  gap: .35rem;
+  margin: 0;
+  color: var(--color-text-muted);
+  font: 500 .64rem var(--font-mono);
+}
+
+.project-orbit__status > span:first-child { color: var(--color-accent); font-size: 1rem; }
+.project-orbit__status strong { margin-left: .65rem; color: var(--color-text); font: 560 1rem var(--font-sans); letter-spacing: -.02em; }
+
+.project-orbit__controls { display: flex; gap: .5rem; }
+.project-orbit__controls button {
+  display: inline-flex;
+  min-height: 2.8rem;
+  align-items: center;
+  gap: .6rem;
+  padding: .6rem .75rem;
+  cursor: pointer;
+  border: 1px solid var(--color-line);
+  border-radius: .35rem;
+  background: rgba(13, 18, 25, .72);
+  color: var(--color-text-soft);
+  font: 500 .58rem var(--font-mono);
+  transition:
+    transform 260ms var(--ease-spring),
+    border-color 260ms var(--ease),
+    color 260ms var(--ease),
+    background 260ms var(--ease);
+}
+.project-orbit__controls button:hover { transform: translateY(-2px); border-color: var(--color-signal); background: var(--color-signal-soft); color: var(--color-signal); }
+.project-orbit__controls button:first-child .arrow-icon { transform: rotate(-135deg); }
+.project-orbit__controls button:last-child .arrow-icon { transform: rotate(45deg); }
+
+.project-orbit__stage { position: relative; padding-block: clamp(1rem, 2vw, 1.75rem); }
+.project-orbit__field { position: absolute; inset: -7% 4% -3%; z-index: -1; overflow: hidden; pointer-events: none; }
+.project-orbit__field::before { position: absolute; inset: 12% 8%; border: 1px solid rgba(104, 228, 238, .08); border-radius: 50%; box-shadow: 0 0 8rem rgba(104, 228, 238, .045); content: ''; transform: perspective(42rem) rotateX(68deg); }
+.project-orbit__field > span { position: absolute; top: 50%; left: 50%; border: 1px solid rgba(212, 165, 107, .13); border-radius: 50%; transform: translate(-50%, -50%) rotateX(68deg); }
+.project-orbit__field > span:nth-child(1) { width: 92%; height: 62%; }
+.project-orbit__field > span:nth-child(2) { width: 72%; height: 46%; border-style: dashed; border-color: rgba(104, 228, 238, .12); animation: project-field-spin 30s linear infinite; }
+.project-orbit__field > span:nth-child(3) { width: 50%; height: 30%; border-color: rgba(152, 125, 255, .12); animation: project-field-spin 22s linear reverse infinite; }
+
+.project-orbit__viewport {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  cursor: grab;
+  outline: none;
+}
+.project-orbit__viewport:active { cursor: grabbing; }
+.project-orbit__viewport:focus-visible { outline: 2px solid var(--color-signal); outline-offset: 5px; }
+.project-orbit__container { display: flex; align-items: stretch; margin-left: calc(clamp(.65rem, 1.6vw, 1.25rem) * -1); touch-action: pan-y pinch-zoom; }
+.project-orbit__slide { min-width: 0; flex: 0 0 86%; padding-left: clamp(.65rem, 1.6vw, 1.25rem); }
+.project-orbit__slide:not([data-active='true']) { pointer-events: none; }
+
+.project-card--orbit {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(30rem, 63svh, 37rem);
+  overflow: hidden;
+  border-color: rgba(244, 241, 234, .16);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(42rem 26rem at 4% 100%, rgba(212, 165, 107, .16), transparent 64%),
+    radial-gradient(34rem 24rem at 100% 0, rgba(104, 228, 238, .09), transparent 70%),
+    linear-gradient(118deg, rgba(18, 25, 37, .97), rgba(7, 9, 13, .98));
+  box-shadow: 0 2rem 7rem rgba(0, 0, 0, .48), inset 0 1px rgba(255, 255, 255, .035);
+}
+
+.project-orbit__slide[data-active='true'] .project-card--orbit { border-color: rgba(212, 165, 107, .34); box-shadow: 0 2.4rem 8rem rgba(0, 0, 0, .58), 0 0 4rem rgba(212, 165, 107, .065), inset 0 1px rgba(255, 255, 255, .055); }
+.project-card--orbit .project-media { min-height: 22rem; }
+.project-card--orbit .project-content { align-self: center; }
+
+.project-card__delivery { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.35rem; }
+.project-card__delivery span { padding: .32rem .52rem; border: 1px solid rgba(104, 228, 238, .18); border-radius: 99rem; color: var(--color-signal); font: 500 .55rem var(--font-mono); letter-spacing: .04em; text-transform: uppercase; }
+
+.project-orbit__dock {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+  min-height: 8.4rem;
+  margin: .5rem auto 0;
+  padding: 0 clamp(.5rem, 3vw, 3rem);
+}
+.project-orbit__rail { position: absolute; right: 7%; bottom: .95rem; left: 7%; height: 6rem; border-top: 1px solid rgba(212, 165, 107, .18); border-radius: 50%; transform: perspective(38rem) rotateX(58deg); box-shadow: 0 -1rem 4rem rgba(212, 165, 107, .04); pointer-events: none; }
+.project-orbit__dock button {
+  --orbit-node-y: 0rem;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: 0;
+  justify-items: center;
+  gap: .35rem;
+  padding: .45rem .25rem;
+  transform: translateY(var(--orbit-node-y));
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  text-align: center;
+  transition: color 420ms var(--ease), transform 520ms var(--ease-spring);
+}
+.project-orbit__dock button:nth-of-type(1),
+.project-orbit__dock button:nth-of-type(6) { --orbit-node-y: 1.7rem; }
+.project-orbit__dock button:nth-of-type(2),
+.project-orbit__dock button:nth-of-type(5) { --orbit-node-y: .55rem; }
+.project-orbit__dock button > span { font: 500 .56rem var(--font-mono); }
+.project-orbit__dock button > i { width: .68rem; height: .68rem; border: 1px solid currentColor; border-radius: 50%; background: var(--color-bg); box-shadow: 0 0 0 .35rem var(--color-bg); transition: background 360ms var(--ease), box-shadow 360ms var(--ease), transform 520ms var(--ease-spring); }
+.project-orbit__dock button > small { max-width: 10rem; overflow: hidden; font: 500 .55rem var(--font-mono); text-overflow: ellipsis; white-space: nowrap; }
+.project-orbit__dock button:hover { color: var(--color-text); }
+.project-orbit__dock button[data-active='true'] { transform: translateY(calc(var(--orbit-node-y) - .5rem)); color: var(--color-accent-strong); }
+.project-orbit__dock button[data-active='true'] > i { transform: scale(1.25); background: var(--color-accent); box-shadow: 0 0 1.6rem rgba(212, 165, 107, .75), 0 0 0 .35rem var(--color-bg); }
+.project-orbit__hint { margin: .35rem 0 0; color: var(--color-text-muted); font: 500 .55rem var(--font-mono); letter-spacing: .04em; text-align: center; }
+
+@keyframes project-field-spin { to { rotate: 1turn; } }
+
+@media (max-width: 58rem) {
+  .proof-card__surface,
+  .capability-card__surface,
+  .project-media__tilt {
+    transform: none !important;
+  }
+
+  .timeline__progress,
+  .timeline-entry--cinematic .timeline-marker {
+    display: none;
+  }
+
+  .timeline-entry--cinematic {
+    grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 1fr);
+  }
+
+  .timeline-entry--cinematic .timeline-meta {
+    grid-column: 1;
+  }
+
+  .timeline-entry--cinematic .timeline-content {
+    grid-column: 2;
+  }
+
+  .project-card__mission-index {
+    font-size: clamp(5rem, 22vw, 9rem);
+  }
+
+  .project-hologram__panel--rear,
+  .project-hologram__halo--outer {
+    display: none;
+  }
+
+  .project-orbit__slide { flex-basis: 93%; }
+  .project-card--orbit { min-height: 0; }
+  .project-card--orbit .project-media { min-height: clamp(18rem, 48vw, 27rem); }
+  .project-orbit__dock { min-height: 7.4rem; padding-inline: 0; }
+  .project-orbit__dock button > small { max-width: 6.5rem; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .project-hologram__orbit,
+  .project-hologram__core,
+  .project-hologram__scan,
+  .education-card__beam,
+  .education-card__orbit {
+    animation: none;
+  }
+}
+
+@media (max-width: 40rem) {
+  .timeline-entry--cinematic {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-entry--cinematic .timeline-meta,
+  .timeline-entry--cinematic .timeline-content {
+    grid-column: 1;
+  }
+
+  .project-hologram__core {
+    left: 33%;
+    width: 38%;
+  }
+
+  .contact-panel__halo {
+    right: -16rem;
+  }
+
+  .project-orbit__header { display: grid; gap: 1rem; }
+  .project-orbit__controls { display: grid; grid-template-columns: 1fr 1fr; }
+  .project-orbit__controls button { justify-content: center; }
+  .project-orbit__controls button span { display: none; }
+  .project-orbit__slide { flex-basis: 100%; padding-left: .55rem; }
+  .project-orbit__container { margin-left: -.55rem; }
+  .project-card--orbit .project-media { min-height: 18rem; }
+  .project-orbit__field { inset: -2% -12% 8%; }
+  .project-orbit__dock { display: flex; min-height: 3.8rem; align-items: center; justify-content: center; gap: .25rem; overflow-x: auto; padding-block: .5rem; }
+  .project-orbit__rail { display: none; }
+  .project-orbit__dock button,
+  .project-orbit__dock button[data-active='true'] { --orbit-node-y: 0rem; flex: 0 0 2.3rem; transform: none; }
+  .project-orbit__dock button > small { display: none; }
+  .project-orbit__hint { margin-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-card__surface,
+  .capability-card__surface,
+  .project-media__tilt {
+    transform: none !important;
+  }
+
+  .timeline__progress-bar {
+    transform: scaleY(1) !important;
+  }
+
+  .project-hologram__orbit,
+  .project-hologram__core,
+  .project-hologram__scan,
+  .education-card__beam,
+  .education-card__orbit {
+    animation: none !important;
+  }
+
+  .contact-email--cinematic:hover .arrow-icon { transform: none; }
+  .project-orbit__field > span { animation: none !important; }
+}

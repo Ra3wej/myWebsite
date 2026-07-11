@@ -1,0 +1,146 @@
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis {
+  scroll-behavior: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 180;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.scroll-progress__bar {
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 50%;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-accent) 74%, #fff),
+    var(--color-accent)
+  );
+  box-shadow: 0 0 1rem color-mix(in srgb, var(--color-accent) 48%, transparent);
+}
+
+.magnetic-link {
+  backface-visibility: hidden;
+}
+
+.count-up {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+.count-up__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.tilt-surface {
+  --tilt-pointer-x: 50%;
+  --tilt-pointer-y: 50%;
+  --tilt-rotate-x: 0deg;
+  --tilt-rotate-y: 0deg;
+  position: relative;
+  isolation: isolate;
+  transform: perspective(72rem) rotateX(var(--tilt-rotate-x))
+    rotateY(var(--tilt-rotate-y)) translate3d(0, 0, 0);
+  transform-style: preserve-3d;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tilt-surface::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--tilt-pointer-x) var(--tilt-pointer-y),
+    rgba(241, 243, 245, 0.14),
+    transparent 42%
+  );
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms var(--ease);
+}
+
+.tilt-surface:focus-within {
+  --tilt-rotate-x: 0deg !important;
+  --tilt-rotate-y: 0deg !important;
+}
+
+.tilt-surface:focus-within::after {
+  opacity: 0 !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .magnetic-link:hover,
+  .magnetic-link:focus-visible,
+  .tilt-surface[data-tilt-active='true'] {
+    will-change: transform;
+  }
+
+  .tilt-surface[data-tilt-active='true'] {
+    transition-duration: 120ms;
+  }
+
+  .tilt-surface[data-tilt-active='true']::after {
+    opacity: 1;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .tilt-surface {
+    transform: none !important;
+    transition: none;
+  }
+
+  .tilt-surface::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    display: none;
+  }
+
+  .magnetic-link,
+  .tilt-surface {
+    transform: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+
+  .tilt-surface::after {
+    display: none;
+  }
+}
