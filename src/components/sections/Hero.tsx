@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { profile } from '../../data/portfolio';
+import { CapabilitySpectrum } from '../experience/CapabilitySpectrum';
 import { SystemPlayground } from '../experience/SystemPlayground';
 import { SceneFallback } from '../visuals/SceneFallback';
 import { ArrowIcon } from '../ui/ArrowIcon';
@@ -22,6 +23,12 @@ export function Hero() {
     const update = () => setCanRenderHero3D(query.matches);
     query.addEventListener('change', update);
     return () => query.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    const launchSystem = () => setIsPlaygroundOpen(true);
+    window.addEventListener('portfolio:launch-system', launchSystem);
+    return () => window.removeEventListener('portfolio:launch-system', launchSystem);
   }, []);
 
   return (
@@ -55,7 +62,10 @@ export function Hero() {
             <p className="hero-statement">{profile.statement}</p>
             <p>{profile.introduction}</p>
           </Reveal>
-          <Reveal className="hero-actions" axis="y" delay={0.23}>
+          <Reveal axis="y" delay={0.2} amount={0.25}>
+            <CapabilitySpectrum />
+          </Reveal>
+          <Reveal className="hero-actions" axis="y" delay={0.26}>
             <MagneticLink
               className="button button--primary"
               href={`mailto:${profile.email}`}
@@ -84,12 +94,20 @@ export function Hero() {
           aria-label="Current professional focus"
         >
           <Reveal className="hero-aside__motion" axis="x" delay={0.2}>
-            <p className="hero-aside__label">Currently</p>
-            <p className="hero-aside__role">Backend Developer</p>
-            <p className="hero-aside__company">Moonline Travel · Feb 2026 — Present</p>
+            <div className="hero-aside__block">
+              <p className="hero-aside__label">Currently</p>
+              <p className="hero-aside__role">Backend Developer</p>
+              <p className="hero-aside__company">Moonline Travel · Feb 2026 — Present</p>
+            </div>
             <div className="hero-aside__rule" />
-            <p className="hero-aside__label">Focus</p>
-            <p className="hero-aside__stack">C# / .NET / PostgreSQL / Docker / CQRS</p>
+            <div className="hero-aside__block">
+              <p className="hero-aside__label">Backend focus</p>
+              <p className="hero-aside__stack">C# / .NET / PostgreSQL / Docker / CQRS</p>
+            </div>
+            <div className="hero-aside__block hero-aside__shipped">
+              <p className="hero-aside__label">Also shipped</p>
+              <p className="hero-aside__stack">6 production apps · Flutter · iOS · Android</p>
+            </div>
             <div className="hero-telemetry" aria-hidden="true">
               <span><i /> API</span>
               <span><i /> DATA</span>

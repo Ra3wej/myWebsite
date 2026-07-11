@@ -12,7 +12,7 @@ export const profile: Profile = {
   title: 'Backend & Mobile Developer',
   statement: 'I build reliable backend systems and production mobile apps.',
   introduction:
-    'Backend-focused developer with a strong mobile foundation, building maintainable .NET services and polished Flutter applications for real-world products.',
+    'I connect maintainable .NET services with polished Flutter products, carrying ideas across APIs, data, infrastructure, iOS, and Android.',
   email: 'rawezh.5555@gmail.com',
   location: 'Sulaymaniyah, Iraq',
 };

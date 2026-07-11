@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { CommandPalette } from '../experience/CommandPalette';
 
 const navigation = [
   { label: 'About', href: '#about' },
@@ -114,6 +115,7 @@ export function Header() {
             </a>
           ))}
         </nav>
+        <CommandPalette />
       </header>
     </>
   );

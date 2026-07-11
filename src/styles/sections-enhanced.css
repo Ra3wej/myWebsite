@@ -226,53 +226,6 @@
   }
 }
 
-.projects-section {
-  --mission-sticky-top: 5.8rem;
-}
-
-.projects-section .project-list {
-  gap: clamp(4.5rem, 10vh, 8rem);
-  padding-bottom: clamp(2rem, 8vh, 6rem);
-  perspective: 100rem;
-}
-
-.project-card--mission {
-  --mission-offset: 0rem;
-  --mission-z: 1;
-  position: sticky;
-  top: calc(var(--mission-sticky-top) + var(--mission-offset));
-  z-index: var(--mission-z);
-  isolation: isolate;
-  min-height: clamp(29rem, 68svh, 40rem);
-  overflow: hidden;
-  transform-origin: center top;
-  border-color: rgba(241, 243, 245, 0.16);
-  box-shadow:
-    0 1.25rem 4.5rem rgba(0, 0, 0, 0.38),
-    0 0 0 1px rgba(189, 149, 103, 0.035) inset;
-}
-
-.project-card--mission:focus-within { z-index: 30; }
-
-.project-card--mission-1 { --mission-offset: 0rem; --mission-z: 1; }
-.project-card--mission-2 { --mission-offset: 0.52rem; --mission-z: 2; }
-.project-card--mission-3 { --mission-offset: 1.04rem; --mission-z: 3; }
-.project-card--mission-4 { --mission-offset: 1.56rem; --mission-z: 4; }
-.project-card--mission-5 { --mission-offset: 2.08rem; --mission-z: 5; }
-.project-card--mission-6 { --mission-offset: 2.6rem; --mission-z: 6; }
-
-.project-card--mission::before {
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: 4;
-  height: 1px;
-  transform: scaleX(0.35);
-  transform-origin: left;
-  background: linear-gradient(90deg, var(--color-accent), transparent 72%);
-  content: '';
-  opacity: 0.7;
-}
-
 .project-card__atmosphere {
   position: absolute;
   inset: 0;
@@ -294,17 +247,17 @@
   pointer-events: none;
 }
 
-.project-card--mission > .project-media,
+.project-card--orbit > .project-media,
 .project-content--mission {
   position: relative;
   z-index: 2;
 }
 
-.project-card--mission .project-media {
+.project-card--orbit .project-media {
   box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.3);
 }
 
-.project-card--mission .project-media--placeholder {
+.project-card--orbit .project-media--placeholder {
   display: block;
   padding: 0;
 }
@@ -642,6 +595,147 @@
   }
 }
 
+/* Orbital project navigator. This replaces the former overlapping sticky stack. */
+.project-orbit {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(1rem, 2vw, 1.6rem) 0 0;
+}
+
+.project-orbit__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.1rem;
+  padding-inline: clamp(.3rem, 1vw, 1rem);
+}
+
+.project-orbit__eyebrow {
+  margin-bottom: .45rem;
+  color: var(--color-signal);
+  font: 500 .58rem var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.project-orbit__status {
+  display: flex;
+  align-items: baseline;
+  gap: .35rem;
+  margin: 0;
+  color: var(--color-text-muted);
+  font: 500 .64rem var(--font-mono);
+}
+
+.project-orbit__status > span:first-child { color: var(--color-accent); font-size: 1rem; }
+.project-orbit__status strong { margin-left: .65rem; color: var(--color-text); font: 560 1rem var(--font-sans); letter-spacing: -.02em; }
+
+.project-orbit__controls { display: flex; gap: .5rem; }
+.project-orbit__controls button {
+  display: inline-flex;
+  min-height: 2.8rem;
+  align-items: center;
+  gap: .6rem;
+  padding: .6rem .75rem;
+  cursor: pointer;
+  border: 1px solid var(--color-line);
+  border-radius: .35rem;
+  background: rgba(13, 18, 25, .72);
+  color: var(--color-text-soft);
+  font: 500 .58rem var(--font-mono);
+  transition:
+    transform 260ms var(--ease-spring),
+    border-color 260ms var(--ease),
+    color 260ms var(--ease),
+    background 260ms var(--ease);
+}
+.project-orbit__controls button:hover { transform: translateY(-2px); border-color: var(--color-signal); background: var(--color-signal-soft); color: var(--color-signal); }
+.project-orbit__controls button:first-child .arrow-icon { transform: rotate(-135deg); }
+.project-orbit__controls button:last-child .arrow-icon { transform: rotate(45deg); }
+
+.project-orbit__stage { position: relative; padding-block: clamp(1rem, 2vw, 1.75rem); }
+.project-orbit__field { position: absolute; inset: -7% 4% -3%; z-index: -1; overflow: hidden; pointer-events: none; }
+.project-orbit__field::before { position: absolute; inset: 12% 8%; border: 1px solid rgba(104, 228, 238, .08); border-radius: 50%; box-shadow: 0 0 8rem rgba(104, 228, 238, .045); content: ''; transform: perspective(42rem) rotateX(68deg); }
+.project-orbit__field > span { position: absolute; top: 50%; left: 50%; border: 1px solid rgba(212, 165, 107, .13); border-radius: 50%; transform: translate(-50%, -50%) rotateX(68deg); }
+.project-orbit__field > span:nth-child(1) { width: 92%; height: 62%; }
+.project-orbit__field > span:nth-child(2) { width: 72%; height: 46%; border-style: dashed; border-color: rgba(104, 228, 238, .12); animation: project-field-spin 30s linear infinite; }
+.project-orbit__field > span:nth-child(3) { width: 50%; height: 30%; border-color: rgba(152, 125, 255, .12); animation: project-field-spin 22s linear reverse infinite; }
+
+.project-orbit__viewport {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  cursor: grab;
+  outline: none;
+}
+.project-orbit__viewport:active { cursor: grabbing; }
+.project-orbit__viewport:focus-visible { outline: 2px solid var(--color-signal); outline-offset: 5px; }
+.project-orbit__container { display: flex; align-items: stretch; margin-left: calc(clamp(.65rem, 1.6vw, 1.25rem) * -1); touch-action: pan-y pinch-zoom; }
+.project-orbit__slide { min-width: 0; flex: 0 0 86%; padding-left: clamp(.65rem, 1.6vw, 1.25rem); }
+.project-orbit__slide:not([data-active='true']) { pointer-events: none; }
+
+.project-card--orbit {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(30rem, 63svh, 37rem);
+  overflow: hidden;
+  border-color: rgba(244, 241, 234, .16);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(42rem 26rem at 4% 100%, rgba(212, 165, 107, .16), transparent 64%),
+    radial-gradient(34rem 24rem at 100% 0, rgba(104, 228, 238, .09), transparent 70%),
+    linear-gradient(118deg, rgba(18, 25, 37, .97), rgba(7, 9, 13, .98));
+  box-shadow: 0 2rem 7rem rgba(0, 0, 0, .48), inset 0 1px rgba(255, 255, 255, .035);
+}
+
+.project-orbit__slide[data-active='true'] .project-card--orbit { border-color: rgba(212, 165, 107, .34); box-shadow: 0 2.4rem 8rem rgba(0, 0, 0, .58), 0 0 4rem rgba(212, 165, 107, .065), inset 0 1px rgba(255, 255, 255, .055); }
+.project-card--orbit .project-media { min-height: 22rem; }
+.project-card--orbit .project-content { align-self: center; }
+
+.project-card__delivery { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.35rem; }
+.project-card__delivery span { padding: .32rem .52rem; border: 1px solid rgba(104, 228, 238, .18); border-radius: 99rem; color: var(--color-signal); font: 500 .55rem var(--font-mono); letter-spacing: .04em; text-transform: uppercase; }
+
+.project-orbit__dock {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+  min-height: 8.4rem;
+  margin: .5rem auto 0;
+  padding: 0 clamp(.5rem, 3vw, 3rem);
+}
+.project-orbit__rail { position: absolute; right: 7%; bottom: .95rem; left: 7%; height: 6rem; border-top: 1px solid rgba(212, 165, 107, .18); border-radius: 50%; transform: perspective(38rem) rotateX(58deg); box-shadow: 0 -1rem 4rem rgba(212, 165, 107, .04); pointer-events: none; }
+.project-orbit__dock button {
+  --orbit-node-y: 0rem;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: 0;
+  justify-items: center;
+  gap: .35rem;
+  padding: .45rem .25rem;
+  transform: translateY(var(--orbit-node-y));
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  text-align: center;
+  transition: color 420ms var(--ease), transform 520ms var(--ease-spring);
+}
+.project-orbit__dock button:nth-of-type(1),
+.project-orbit__dock button:nth-of-type(6) { --orbit-node-y: 1.7rem; }
+.project-orbit__dock button:nth-of-type(2),
+.project-orbit__dock button:nth-of-type(5) { --orbit-node-y: .55rem; }
+.project-orbit__dock button > span { font: 500 .56rem var(--font-mono); }
+.project-orbit__dock button > i { width: .68rem; height: .68rem; border: 1px solid currentColor; border-radius: 50%; background: var(--color-bg); box-shadow: 0 0 0 .35rem var(--color-bg); transition: background 360ms var(--ease), box-shadow 360ms var(--ease), transform 520ms var(--ease-spring); }
+.project-orbit__dock button > small { max-width: 10rem; overflow: hidden; font: 500 .55rem var(--font-mono); text-overflow: ellipsis; white-space: nowrap; }
+.project-orbit__dock button:hover { color: var(--color-text); }
+.project-orbit__dock button[data-active='true'] { transform: translateY(calc(var(--orbit-node-y) - .5rem)); color: var(--color-accent-strong); }
+.project-orbit__dock button[data-active='true'] > i { transform: scale(1.25); background: var(--color-accent); box-shadow: 0 0 1.6rem rgba(212, 165, 107, .75), 0 0 0 .35rem var(--color-bg); }
+.project-orbit__hint { margin: .35rem 0 0; color: var(--color-text-muted); font: 500 .55rem var(--font-mono); letter-spacing: .04em; text-align: center; }
+
+@keyframes project-field-spin { to { rotate: 1turn; } }
+
 @media (max-width: 58rem) {
   .proof-card__surface,
   .capability-card__surface,
@@ -666,20 +760,6 @@
     grid-column: 2;
   }
 
-  .projects-section .project-list {
-    gap: clamp(1.25rem, 2.5vw, 2rem);
-    padding-bottom: 0;
-    perspective: none;
-  }
-
-  .project-card--mission {
-    position: relative;
-    top: auto;
-    z-index: auto;
-    min-height: 0;
-    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.2);
-  }
-
   .project-card__mission-index {
     font-size: clamp(5rem, 22vw, 9rem);
   }
@@ -688,6 +768,12 @@
   .project-hologram__halo--outer {
     display: none;
   }
+
+  .project-orbit__slide { flex-basis: 93%; }
+  .project-card--orbit { min-height: 0; }
+  .project-card--orbit .project-media { min-height: clamp(18rem, 48vw, 27rem); }
+  .project-orbit__dock { min-height: 7.4rem; padding-inline: 0; }
+  .project-orbit__dock button > small { max-width: 6.5rem; }
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -718,21 +804,24 @@
   .contact-panel__halo {
     right: -16rem;
   }
+
+  .project-orbit__header { display: grid; gap: 1rem; }
+  .project-orbit__controls { display: grid; grid-template-columns: 1fr 1fr; }
+  .project-orbit__controls button { justify-content: center; }
+  .project-orbit__controls button span { display: none; }
+  .project-orbit__slide { flex-basis: 100%; padding-left: .55rem; }
+  .project-orbit__container { margin-left: -.55rem; }
+  .project-card--orbit .project-media { min-height: 18rem; }
+  .project-orbit__field { inset: -2% -12% 8%; }
+  .project-orbit__dock { display: flex; min-height: 3.8rem; align-items: center; justify-content: center; gap: .25rem; overflow-x: auto; padding-block: .5rem; }
+  .project-orbit__rail { display: none; }
+  .project-orbit__dock button,
+  .project-orbit__dock button[data-active='true'] { --orbit-node-y: 0rem; flex: 0 0 2.3rem; transform: none; }
+  .project-orbit__dock button > small { display: none; }
+  .project-orbit__hint { margin-top: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-card--mission {
-    position: relative;
-    top: auto;
-    z-index: auto;
-  }
-
-  .projects-section .project-list {
-    gap: clamp(1.25rem, 2.5vw, 2rem);
-    padding-bottom: 0;
-    perspective: none;
-  }
-
   .proof-card__surface,
   .capability-card__surface,
   .project-media__tilt {
@@ -752,4 +841,5 @@
   }
 
   .contact-email--cinematic:hover .arrow-icon { transform: none; }
+  .project-orbit__field > span { animation: none !important; }
 }

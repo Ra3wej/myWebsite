@@ -13,8 +13,8 @@ interface RevealProps {
 
 const revealOffsets: Record<RevealAxis, { x: number; y: number }> = {
   none: { x: 0, y: 0 },
-  x: { x: 28, y: 0 },
-  y: { x: 0, y: 24 },
+  x: { x: 22, y: 0 },
+  y: { x: 0, y: 18 },
 };
 
 export function Reveal({
@@ -37,8 +37,8 @@ export function Reveal({
       }
       transition={{
         delay: Math.max(0, delay),
-        duration: 0.72,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.86,
+        ease: [0.16, 1, 0.3, 1],
       }}
       viewport={{ amount: Math.min(1, Math.max(0, amount)), once: true }}
       whileInView={

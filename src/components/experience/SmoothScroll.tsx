@@ -17,7 +17,7 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     const lenis = new Lenis({
       anchors: true,
       autoRaf: false,
-      lerp: 0.085,
+      lerp: 0.075,
       prevent: (node) => node.closest('[data-lenis-prevent]') !== null,
       smoothWheel: true,
       stopInertiaOnNavigate: true,
