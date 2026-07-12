@@ -654,6 +654,16 @@
 .project-orbit__controls button:first-child .arrow-icon { transform: rotate(-135deg); }
 .project-orbit__controls button:last-child .arrow-icon { transform: rotate(45deg); }
 
+.project-orbit,
+.project-orbit__header,
+.project-orbit__header > *,
+.project-orbit__stage,
+.project-orbit__viewport,
+.project-orbit__slide,
+.project-card--orbit {
+  min-width: 0;
+}
+
 .project-orbit__stage { position: relative; padding-block: clamp(1rem, 2vw, 1.75rem); }
 .project-orbit__field { position: absolute; inset: -7% 4% -3%; z-index: -1; overflow: hidden; pointer-events: none; }
 .project-orbit__field::before { position: absolute; inset: 12% 8%; border: 1px solid rgba(104, 228, 238, .08); border-radius: 50%; box-shadow: 0 0 8rem rgba(104, 228, 238, .045); content: ''; transform: perspective(42rem) rotateX(68deg); }

@@ -343,7 +343,7 @@ body[data-playground-open='true'] { overflow: hidden; }
 @media (max-width: 58rem) {
   .hero--systems { overflow: hidden; }
   .hero--systems::before { inset: 5rem 0 0; opacity: .35; }
-  .hero-world { top: 4.5rem; right: -15%; width: 92%; min-width: 36rem; height: 63%; opacity: .58; pointer-events: none; mask-image: linear-gradient(180deg, #000 0 62%, transparent 96%); }
+  .hero-world { top: 4.5rem; right: -10%; width: 82%; min-width: 0; height: 63%; opacity: .42; pointer-events: none; mask-image: linear-gradient(180deg, #000 0 62%, transparent 96%); }
   .hero-content--systems { padding-top: 2rem; }
   .hero-aside--systems { background: rgba(7, 9, 13, .72); }
   .hero-aside__shipped { margin-top: 0; padding-top: 0; border-top: 0; }
@@ -352,13 +352,14 @@ body[data-playground-open='true'] { overflow: hidden; }
 
 @media (max-width: 40rem) {
   .hero--systems { background: linear-gradient(180deg, rgba(7, 9, 13, .5), var(--color-bg) 48%); }
-  .hero-world { top: 4.5rem; right: -35%; width: 135%; min-width: 0; height: 28rem; opacity: .42; }
+  .hero-world { top: 4.5rem; right: -24%; width: 118%; min-width: 0; height: 24rem; opacity: .26; pointer-events: none; }
   .hero-content--systems { padding-top: 5.5rem; }
   .hero-content--systems h1 > span { width: auto; }
   .hero-overline > span:last-child { display: none; }
   .capability-spectrum { margin-top: 1.1rem; padding: .55rem; }
   .capability-spectrum__header { padding-inline: .2rem; }
   .capability-spectrum__header a { display: none; }
+  .capability-spectrum__grid { grid-template-columns: 1fr; }
   .capability-spectrum__item { gap: .45rem; padding: .45rem .35rem; }
   .capability-spectrum__orbit { width: 1.9rem; height: 1.9rem; }
   .capability-spectrum__copy strong { font-size: .64rem; }

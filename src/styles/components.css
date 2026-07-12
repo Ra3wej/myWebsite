@@ -7,6 +7,45 @@
   padding-inline: var(--gutter);
 }
 
+.site-header,
+.hero,
+.section,
+.site-footer,
+.hero-content,
+.hero-aside,
+.section-heading > *,
+.about-copy > *,
+.timeline-entry > *,
+.capability-card,
+.project-card > *,
+.education-card > *,
+.contact-panel,
+.contact-meta > * {
+  min-width: 0;
+}
+
+.hero h1,
+.section-heading h2,
+.project-content h3,
+.education-card h3,
+.contact-email,
+.tag-list,
+.store-links,
+.contact-meta {
+  overflow-wrap: anywhere;
+}
+
+.contact-email > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.button,
+.external-link,
+.hero-work-link {
+  max-width: 100%;
+}
+
 .site-header {
   position: fixed;
   inset: 0 0 auto;
